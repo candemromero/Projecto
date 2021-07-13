@@ -32,7 +32,7 @@ function getCards() {
 }
   return (
     <>
-   <Row className="row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 row-cols-xl-6 justify-content-center">
+   <Row className="row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 row-cols-xl-6 justify-content-center mx-4">
         {getCards()}
       </Row>
     </>

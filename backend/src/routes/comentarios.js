@@ -10,15 +10,13 @@ router.get('/', (req, res) => {
     if (err) {
       res.send('Error al obtener los comentarios');
     } else {
-      res.json(result);
-    }
+      res.json(result)
+      }
+      
+    })
   });
-});
 
-router.get('/userpubs', (req, res) => {
-  if(req.session.user ===0){console.log('no llega la info de la sesion del usuario')}else{console.log(req.session.user.id);}
-
-
+router.get('/usercom', (req, res) => {
   const sql = `SELECT * 
                FROM comentarios
                WHERE iduser = ?`;

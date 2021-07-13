@@ -11,9 +11,7 @@ router.get('/check', (req, res) => {
   });
 
 //Inicio de sesión
-router.post('/', (req, res) => {
-    console.log(req.session.user);
-  
+router.post('/', (req, res) => {  
     const sql = `SELECT *
                  FROM usuarios
                  WHERE mail = ?

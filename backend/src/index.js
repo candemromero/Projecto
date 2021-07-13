@@ -11,7 +11,7 @@ app.use(fileupload());
 
 app.use(
   session({
-    secret: '123456',
+    secret: 'dhn%fgf3hfj',
     resave: false,
     saveUninitialized: true,
   })
@@ -21,9 +21,9 @@ app.use(express.static('public'));
 
 app.use(express.json());
 
+const sessionRoute = require('./routes/session');
 const usuariosRoute = require('./routes/usuarios');
 const paisesRoute = require('./routes/paises');
-const sessionRoute = require('./routes/session');
 const favoritosRoute = require('./routes/favoritos');
 const comentariosRoute = require('./routes/comentarios');
 
