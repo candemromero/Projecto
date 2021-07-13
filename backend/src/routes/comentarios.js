@@ -16,7 +16,8 @@ router.get('/', (req, res) => {
 });
 
 router.get('/userpubs', (req, res) => {
-  console.log(req.session.user.id);
+  if(req.session.user ===0){console.log('no llega la info de la sesion del usuario')}else{console.log(req.session.user.id);}
+
 
   const sql = `SELECT * 
                FROM comentarios

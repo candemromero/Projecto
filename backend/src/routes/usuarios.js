@@ -25,6 +25,7 @@ router.get('/:id', (req, res) => {
       res.send('Error al obtener el usuarios');
     } else {
       res.json(result);
+      console.log(req.session.user);
     }
   });
 });

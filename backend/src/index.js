@@ -27,10 +27,10 @@ const sessionRoute = require('./routes/session');
 const favoritosRoute = require('./routes/favoritos');
 const comentariosRoute = require('./routes/comentarios');
 
+app.use('/session', sessionRoute); 
 app.use('/usuarios', usuariosRoute);
 app.use('/paises', paisesRoute);
 app.use('/comentarios', comentariosRoute);
-app.use('/session', sessionRoute); 
 app.use('/favoritos', favoritosRoute);
 
 
