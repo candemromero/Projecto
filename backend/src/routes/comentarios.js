@@ -31,13 +31,15 @@ router.get('/usercom', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  const sql = 'SELECT * FROM comentarios WHERE idcountry=?';
+  const idcountry = req.params.id;
+  const sql = `SELECT * FROM comentarios WHERE country = ? `
 
-  connection.query(sql, [req.params.id], (err, result) => {
+  connection.query(sql, [idcountry] , (err, result) => {
     if (err) {
       res.send('Error al obtener comentarios del país');
+      console.log(err);
     } else {
-      res.json(result[0]);
+      res.json(result);
     }
   });
 });
@@ -144,7 +146,7 @@ router.delete('/:id', (req, res) => {
       });
     } else {
       res.json({
-        status: 'OK',
+        status: 200,
         message: 'El comentario ha sido eliminada correctamente',
       });
     }

@@ -1,51 +1,51 @@
 import React, {useState, useEffect} from 'react';
-import Box from '@material-ui/core/Box';
-import { makeStyles } from '@material-ui/core/styles';
+import {useParams} from 'react-router-dom';
+
+import Container from 'react-bootstrap/Container';
 import Comentario from './Comentario';
 
 
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-      flexGrow: 1,
-    },
-  }));
-
-
 export default function ComentariosSection() {
-    const classes = useStyles();
-    const [comment, setComment] = useState(null)
-
+    const {id} = useParams();
+    const [comment, setComment] = useState([])
     useEffect(getInfo, []);
+    
+
 async function getInfo() {
-  let url = 'http://localhost:8000/comentarios';
+  const url = 'http://localhost:8000/comentarios/' + id;
 
-  const response = await fetch(url, { credentials: 'include' });
-  const data = await response.json();
-
-  setComment(data);
+    const response = await fetch(url, { credentials: 'include' });
+    const data = await response.json();
+    if(data===null){
+      console.log('error en buscar la info')
+  }else{
+    setComment(data) 
+}
 }
 
-function getComments() {
-  if(comment){
-  const comentarios = comment.map((comentario) => {
-    return (
-      <Comentario usuario={comment.iduser}
-      pais={comment.idcountry} desc={comment.descripcion}
-      imagen={comment.imagen} fecha={comment.fecha} id={comment.id}
-      />
-      )})}else{
-        console.log('no llegaron los datos del comentario')
-      }
-  }
-  
+    function getComments() {
+        const comentarios = comment.map((comentario) => {
+            return(
+              <Comentario usuario={comentario.iduser} desc={comentario.descripcion}
+              imagen={comentario.imagen} fecha={comentario.fecha} id={comentario.id}
+              />
+              );
+        });
+      return comentarios
+    }
+
+
+
 
 
 return (
         <>
-            <Box className={classes.root} color="text.primary">
-                {getComments()}
-            </Box>
+          <Container fluid>
+              {comment &&
+                getComments()
+              }
+          </Container>
         </>
     )
 }

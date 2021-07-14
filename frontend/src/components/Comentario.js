@@ -13,7 +13,8 @@ const useStyles = makeStyles((theme) => ({
     paper: {
       padding: theme.spacing(2),
       margin: 'auto',
-      maxWidth: 500,
+      maxWidth: 'auto',
+      height: 'auto',
     },
     image: {
       width: 128,
@@ -22,30 +23,36 @@ const useStyles = makeStyles((theme) => ({
     img: {
       margin: 'auto',
       display: 'block',
-      maxWidth: '100%',
-      maxHeight: '100%',
+      maxWidth: '20vh',
+      maxHeight: '20vh',
     },
   }));
 
 export default function Comentario(props) {
     const classes = useStyles();
-    const [usuario, setUsuario] = useState (null)
+    const [usuario, setUsuario] = useState ([])
 
     const handleRemove = async() => {
         const url = `http://localhost:8000/comentarios/${props.id}`;
         const response = await fetch(url, { method: 'DELETE', credentials: 'include' });
         const data = await response.json();
+        if(data.status === 200) {
+          props.hidden()
+        }
     }
- useEffect (datosUser, [])
+    useEffect (datosUser, [])
     async function datosUser(){
       const url = `http://localhost:8000/usuarios/${props.usuario}`;
         const response = await fetch(url, { credentials: 'include' });
         const data = await response.json();
-        setUsuario(data)
+        if(data) {
+        setUsuario(data[0])
+        }else {console.log('ACA info user en comentario')}
     }
 
+
     return (
-        <Paper className={classes.paper}>
+        <Paper className={classes.paper} >
                     <Grid container spacing={2}>
                     <Grid item>
                         <img className={classes.img} alt="complex" src={props.imagen} />
@@ -54,12 +61,12 @@ export default function Comentario(props) {
                         <Grid item xs container direction="column" spacing={2}>
                         <Grid item xs>
                             <Typography gutterBottom variant="subtitle1">
-                            {usuario.nombre} 
-                            </Typography>
-                            <Typography variant="subtitle2" gutterBottom color="textSecondary">
+                           {usuario.nombre} {usuario.apellido}                            
+                           </Typography>
+                            <Typography variant="caption" gutterBottom color="textSecondary">
                             {props.fecha}
                             </Typography>
-                            <Typography variant="body2" >
+                            <Typography variant="body1" >
                             {props.desc}
                             </Typography>
                         </Grid>

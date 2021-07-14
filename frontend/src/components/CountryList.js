@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import Row from 'react-bootstrap/Row';
-import CCard from './Card';
+import CCard from './CCard';
 
 
 export default function CountryList() {
@@ -23,7 +23,7 @@ function getCards() {
       <CCard
         nombre={pais.nombre}
         imagen={pais.bandera}
-        id={pais.id}  
+        idcountry={pais.id}  
       />
     );
   });

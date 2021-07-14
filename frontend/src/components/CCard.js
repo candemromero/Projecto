@@ -42,7 +42,7 @@ export default function CCard(props) {
 
   return (
 
-    <Link to={`/detalle/${props.id}`}>
+    <Link to={`/detalle/${props.idcountry}`}>
       <Card className={classes.root} variant="outlined" >
         <CardActionArea className={classes.action}>
           <CardMedia
