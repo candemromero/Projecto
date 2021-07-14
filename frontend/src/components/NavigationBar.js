@@ -80,17 +80,11 @@ export default function NavegationBar(props) {
     <>
       <Navbar bg='dark' expand="lg">
         <Link to="/" className="navbar-brand">INFOCOUNTRY</Link>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="mr-auto">
+        <Navbar.Toggle  aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse alignRight id="basic-navbar-nav">
+          <Nav  className="mr-auto">
           <Link to="/" className="nav-link">Inicio</Link>
             <Link to="/paises" className="nav-link">Paises</Link>
-            <NavDropdown alignRight title="Categorías" id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Desarrollados</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2"> En Vías de Desarrollo</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Subdesarrollados</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.4">Continentes</NavDropdown.Item>
-            </NavDropdown>
           </Nav>   
           
           <div className={classes.search}>

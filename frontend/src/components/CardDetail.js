@@ -31,51 +31,58 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CardDetail() {
     const classes = useStyles();
+    useEffect(cargarInfo, []);
+    useEffect(getData,[])
 
     const {id} = useParams();
-    const [pais, setPais]= useState(null);
-    useEffect(cargarInfo, []);
+    const [pais, setPais]= useState('');
+    const [datos, setDatos] = useState('');
 
     async function cargarInfo(){
         const url = 'http://localhost:8000/paises/'+ id;
         const response = await fetch(url);
         const data = await response.json();
-        setPais(data[0])
-        getData()
+        if(data){
+          setPais(data[0]);
+        } else{ 
+          console.log('Error en traer la data IDH')
+        }
+        
     }
 
     //INFO CDatosIDH
     async function getData() {
-      const url = `http://ec2-54-174-131-205.compute-1.amazonaws.com/API/HDRO_API.php/country_code=${id}/indicator_id=146206/year=2019/structure=ciy`
-      const response = await fetch(url);
+      const url = `http://localhost:8000/paises/data/${id}`
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+        credentials: 'include',
+      });
       const data = await response.json();
       if(data){
-        console.log(data); 
+        setDatos(data)
       } else{ 
         console.log('Error en traer la data IDH')
       }
-
+      
    }
 
     return (
       <>
       {pais &&
-          <Row className="row-cols-1 row-cols-md-2 row-cols-lg-3">
+          <Row className="row-cols-1 row-cols-sm-2 row-cols-md-3">
             <Col>
-              {/* <Paper className={classes.paper}> */}
+          <Paper className={classes.paper}>
                 <Image className={classes.media} width={250} src={pais.bandera} rounded />
                 <Typography gutterBottom variant="h3">
                     {pais.nombre}
                   </Typography>
-            {/*   </Paper> */}
-                  <CInfoGeneral />
+
+             </Paper> 
             </Col>
-            <Col>
-            <CDatosIDH />
-            </Col>
-            <Col>
-            
-            </Col>
+          
+            <CDatosIDH data={datos} />
+          
           </Row>
 }
         <ComentariosSection />

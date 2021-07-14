@@ -29,4 +29,17 @@ router.get('/:id', (req, res) => {
   });
 });
 
+router.get('/data/:id', (req, res) => {
+  const idcountry = req.params.id;
+
+  const sql = 'SELECT * FROM data WHERE countryid = ?';
+
+  connection.query(sql, [idcountry], (err, result) => {
+    if (err) {
+      res.send('Error al obtener el país');
+    } else {
+      res.json(result);
+    }
+  });
+});
 module.exports = router;
