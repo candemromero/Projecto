@@ -45,26 +45,25 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  const sql = `INSERT INTO comentarios(iduser, idcountry, descripcin, imagen)
-             VALUES(?, ?, ?, ?)`;
+  const sql = `INSERT INTO comentarios(iduser, country, descripcion)
+             VALUES(?, ?, ?)`;
 
   const values = [
     req.session.user.id,
-    req.body.idcountry,
+    req.body.country,
     req.body.descripcion,
-    req.body.imagen,
   ];
 
   connection.query(sql, values, (err, result) => {
     if (err) {
       console.log(err);
       res.json({
-        status: 'error',
+        status: 401,
         message: 'Error al realizar el comentario',
       });
     } else {
       res.json({
-        status: 'OK',
+        status: 200,
         message: 'comentario realizado correctamente',
       });
     }
@@ -77,46 +76,8 @@ router.put('/:id', (req, res) => {
 
   let values = [req.body.descripcion];
 
-  if (req.files) {
-// Con esto obtenemos el nombre de la imagen actual
-    const sqlCurrentImage = `SELECT imagen
-                             FROM comentarios
-                             WHERE id = ?`;
-    connection.query(sqlCurrentImage, [req.params.id], (err, result) => {
-      if (err) {
-        console.error(err);
-      } else {
-        //Borramos el archivo anterior
-        const fileToDelete = `./public/images/${result[0].imagen}`;
-        fs.unlink(fileToDelete, (err) => {
-          if (err) {
-            console.log('Error al borrar la imagen');
-          } else {
-            console.log('Imagen borrada');
-          }
-        });
-      }
-    });
-
-    //Obtenemos la nueva imagen
-    const comImage = req.files.comImage;
-
-    imageFileName = Date.now() + path.extname(comImage.name);
-
-    console.log(imageFileName);
-
-    comImage.mv(`./public/images/${imageFileName}`, (err) => {
-      if (err) {
-        console.log(err);
-      }
-    });
-
-    sqlUpdate += ', imagen = ?';
-    values.push(imageFileName);
-  }
-
-  sqlUpdate += ' WHERE id = ?';
-  values.push(req.params.id);
+    sqlUpdate += ' WHERE id = ?';
+    values.push(req.params.id);
 
   connection.query(sqlUpdate, values, (err, result) => {
     if (err) {

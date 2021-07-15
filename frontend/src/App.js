@@ -7,6 +7,7 @@ import Header from "./components/Header";
 import CountryList from "./components/CountryList";
 import CardDetail from "./components/CardDetail";
 import ComentariosSection from "./components/ComentariosSection"
+import CajaComentario from "./components/CajaComentario";
 
 
 function App() {
@@ -41,12 +42,13 @@ function App() {
       </Route>
       <Route exact path="/detalle/:id">
          <CardDetail />
+         <CajaComentario />
          <ComentariosSection />
       </Route>
 
       <Route exact path="/paises" >
       <CountryList />
-        </Route>
+      </Route>
     </Switch>
   </BrowserRouter>
   )

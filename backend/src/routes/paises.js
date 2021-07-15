@@ -32,7 +32,7 @@ router.get('/:id', (req, res) => {
 router.get('/data/:id', (req, res) => {
   const idcountry = req.params.id;
 
-  const sql = 'SELECT * FROM data WHERE countryid = ?';
+  const sql = 'SELECT * FROM data WHERE countryid = ? ORDER BY `indcode` DESC';
 
   connection.query(sql, [idcountry], (err, result) => {
     if (err) {
@@ -42,4 +42,21 @@ router.get('/data/:id', (req, res) => {
     }
   });
 });
+
+router.get('/datos/:id', (req, res) => {
+  const idcountry = req.params.id;
+
+  const sql = 'SELECT * FROM datos WHERE code = ? ';
+
+  connection.query(sql, [idcountry], (err, result) => {
+    if (err) {
+      res.send('Error al obtener el país');
+    } else {
+      res.json(result);
+    }
+  });
+});
+
+
+
 module.exports = router;

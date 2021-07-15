@@ -3,6 +3,7 @@ import {useParams} from 'react-router-dom';
 
 import Container from 'react-bootstrap/Container';
 import Comentario from './Comentario';
+import CajaComentario from './CajaComentario';
 
 
 
@@ -19,9 +20,9 @@ async function getInfo() {
     const data = await response.json();
     if(data===null){
       console.log('error en buscar la info')
-  }else{
-    setComment(data) 
-}
+      }else{
+        setComment(data) 
+    }
 }
 
     function getComments() {

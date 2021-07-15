@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import Row from 'react-bootstrap/Row';
 import CCard from './CCard';
+import Typography from '@material-ui/core/Typography';
 
 
 export default function CountryList() {
@@ -32,6 +33,9 @@ function getCards() {
 }
   return (
     <>
+    <Typography variant="h3" gutterBottom>
+            Countries
+        </Typography>
    <Row className="row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-5 row-cols-xl-6 justify-content-center mx-4">
         {getCards()}
       </Row>

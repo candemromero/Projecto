@@ -1,8 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {useParams} from 'react-router-dom';
-import ComentariosSection from './ComentariosSection';
 import CDatosIDH from './CDatosIDH';
-import CInfoGeneral from './CInfoGeneral';
 //BOOTSTRAP
 import Image from 'react-bootstrap/Image';
 import Row from 'react-bootstrap/Row';
@@ -33,10 +31,12 @@ export default function CardDetail() {
     const classes = useStyles();
     useEffect(cargarInfo, []);
     useEffect(getData,[])
+    useEffect(masInfo,[])
 
     const {id} = useParams();
     const [pais, setPais]= useState('');
     const [datos, setDatos] = useState('');
+    const [data, setData]= useState('');
 
     async function cargarInfo(){
         const url = 'http://localhost:8000/paises/'+ id;
@@ -49,6 +49,13 @@ export default function CardDetail() {
         }
         
     }
+    async function masInfo(){
+      const url = 'http://localhost:8000/paises/datos/'+ id;
+      const response = await fetch(url)
+      const data = await response.json(); 
+      setData(data[0])
+  }
+
 
     //INFO CDatosIDH
     async function getData() {
@@ -75,17 +82,58 @@ export default function CardDetail() {
           <Paper className={classes.paper}>
                 <Image className={classes.media} width={250} src={pais.bandera} rounded />
                 <Typography gutterBottom variant="h3">
-                    {pais.nombre}
+                    {pais.name}
                   </Typography>
+                  <Typography variant="h6" gutterBottom>
+                      Capital:
+                  </Typography>
+                  <Typography variant="h5" gutterBottom>
+                              {pais.capital}
+                    </Typography>
+                    <Typography variant="h6" gutterBottom>
+                      Region:
+                    </Typography><Typography variant="h5" gutterBottom>
+                              {pais.region}
+                            </Typography>
+                    <Typography variant="h6" gutterBottom>
+                      Subregion:
+                    </Typography><Typography variant="h5" gutterBottom>
+                              {pais.subregion}
+                            </Typography>
+                    <Typography variant="h6" gutterBottom>
+                      Area: 
+                    </Typography><Typography variant="h5" gutterBottom>
+                              {pais.area}
+                            </Typography>
+                    <Typography variant="h6" gutterBottom>
+                      Gentilicio:
+                    </Typography><Typography variant="h5" gutterBottom>
+                              {pais.gentilicio}
+                            </Typography>
+                    <Typography variant="h6" gutterBottom>
+                      Currency:
+                    </Typography><Typography variant="h5" gutterBottom>
+                              {pais.codemoneda},  {pais.simbmoneda} {pais.moneda}
+                            </Typography>
+                    <Typography variant="h6" gutterBottom>
+                      Language/s:
+                            </Typography><Typography variant="h5" gutterBottom>
+                      
+                    </Typography><Typography variant="h5" gutterBottom>
+                              {pais.idioma1} , {pais.idioma2} , {pais.idioma3}
+                            </Typography>
+                    <Typography variant="h6" gutterBottom>
+                      Calling Code:
+                    </Typography><Typography variant="h5" gutterBottom>
+                              {pais.callcode}
+                            </Typography>
 
              </Paper> 
             </Col>
-          
-            <CDatosIDH data={datos} />
+        
+            <CDatosIDH data={datos} masdata={data}/>
           
           </Row>
-}
-        <ComentariosSection />
-      </>
+}      </>
     )
 }

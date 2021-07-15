@@ -81,10 +81,10 @@ export default function NavegationBar(props) {
       <Navbar bg='dark' expand="lg">
         <Link to="/" className="navbar-brand">INFOCOUNTRY</Link>
         <Navbar.Toggle  aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse alignRight id="basic-navbar-nav">
+        <Navbar.Collapse alignright="true" id="basic-navbar-nav">
           <Nav  className="mr-auto">
-          <Link to="/" className="nav-link">Inicio</Link>
-            <Link to="/paises" className="nav-link">Paises</Link>
+          <Link to="/" className="nav-link">Home</Link>
+            <Link to="/paises" className="nav-link">Countries</Link>
           </Nav>   
           
           <div className={classes.search}>
@@ -102,17 +102,17 @@ export default function NavegationBar(props) {
           </div>
 
           {props.user ? (
-          <NavDropdown alignRight title={props.user.name} id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Mis Favoritos</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Comentarios</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">Mi cuenta</NavDropdown.Item>
+          <NavDropdown alignright="true" title={props.user.name} id="basic-nav-dropdown">
+              <NavDropdown.Item href="#action/3.1">Favorites</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.2">Comments</NavDropdown.Item>
+              <NavDropdown.Item href="#action/3.3">My account</NavDropdown.Item>
               <NavDropdown.Divider />
-              <NavDropdown.Item onClick={handleLogout} >Cerrar Sesión</NavDropdown.Item>
+              <NavDropdown.Item onClick={handleLogout} >Sign out</NavDropdown.Item>
             </NavDropdown>
           ) : (
             <>
             <Button variant="outlined" color="primary" onClick={handleLoginClick}>
-              Iniciar Sesión
+            Sign in
             </Button>
             </>
           )
