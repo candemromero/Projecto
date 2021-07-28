@@ -103,9 +103,9 @@ export default function NavegationBar(props) {
 
           {props.user ? (
           <NavDropdown alignright="true" title={props.user.name} id="basic-nav-dropdown">
-              <NavDropdown.Item href="#action/3.1">Favorites</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.2">Comments</NavDropdown.Item>
-              <NavDropdown.Item href="#action/3.3">My account</NavDropdown.Item>
+              <Link to="/favoritos" className="nav-link">Favoritos</Link>
+              <Link to="/comentarios" className="nav-link">Comentarios</Link>
+              <Link to="/cuenta" className="nav-link">Cuenta</Link>
               <NavDropdown.Divider />
               <NavDropdown.Item onClick={handleLogout} >Sign out</NavDropdown.Item>
             </NavDropdown>

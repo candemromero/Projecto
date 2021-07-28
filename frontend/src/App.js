@@ -6,8 +6,9 @@ import MyNavbar from "./components/NavigationBar";
 import Header from "./components/Header";
 import CountryList from "./components/CountryList";
 import CardDetail from "./components/CardDetail";
-import ComentariosSection from "./components/ComentariosSection"
-import CajaComentario from "./components/CajaComentario";
+import Favoritos from "./components/Favoritos";
+import Cuenta from "./components/Cuenta";
+import MisComentarios from "./components/MisComentarios";
 
 
 function App() {
@@ -40,14 +41,23 @@ function App() {
         <Header />
         <CountryList />
       </Route>
+
       <Route exact path="/detalle/:id">
          <CardDetail />
-         <CajaComentario />
-         <ComentariosSection />
       </Route>
 
       <Route exact path="/paises" >
       <CountryList />
+      </Route>
+
+      <Route exact path="/favoritos">
+        <Favoritos />
+      </Route>
+      <Route exact path="/cuenta">
+        <Cuenta />
+      </Route>
+      <Route exact path="/comentarios">
+        <MisComentarios />
       </Route>
     </Switch>
   </BrowserRouter>

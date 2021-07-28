@@ -28,6 +28,9 @@ export default function CDatosIDH(props) {
 
     return (
         <Col>
+        <Typography variant="caption" display="block" color="textSecondary" gutterBottom>
+        Data from database: World Development Indicators
+        </Typography>
         <Paper>
         <Typography variant="button" display="block" gutterBottom>
             HDI Rank
@@ -40,8 +43,6 @@ export default function CDatosIDH(props) {
         <Typography variant="button" display="block" gutterBottom>
         Life expectancy at birth
         </Typography> 
-        </Paper>
-        <Paper>
         <Typography variant="h4" gutterBottom>
             {valor.life}
         </Typography></Paper>
@@ -60,9 +61,6 @@ export default function CDatosIDH(props) {
             {valor.matday}
         </Typography>
         </Paper>
-        <Typography variant="caption" display="block" color="textSecondary" gutterBottom>
-        Data from database: World Development Indicators
-        </Typography>
 
         {info &&
         getDatos()

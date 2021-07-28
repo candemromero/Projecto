@@ -21,18 +21,14 @@ router.post('/', (req, res) => {
       if (err) {
         console.log('Error al verificar el usuario');
       } else {
-        if (result.length === 1) {
-          console.log(result);
-  
+        if (result.length === 1) {  
           const nombreCompleto = `${result[0].nombre} ${result[0].apellido}`;
   
           req.session.user = {
             name: nombreCompleto,
             id: result[0].id,
           };
-  
-          console.log(req.session.user);
-  
+    
           res
             .status(200)
             .json({ message: 'Usuario válido', data: nombreCompleto });

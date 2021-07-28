@@ -6,14 +6,14 @@ import Comentario from './Comentario';
 import CajaComentario from './CajaComentario';
 
 
-
 export default function ComentariosSection() {
     const {id} = useParams();
-    const [comment, setComment] = useState([])
-    useEffect(getInfo, []);
+    const [comment, setComment] = useState([]);
+
+  useEffect(getComentarios, []);
     
 
-async function getInfo() {
+async function getComentarios() {
   const url = 'http://localhost:8000/comentarios/' + id;
 
     const response = await fetch(url, { credentials: 'include' });
@@ -29,7 +29,7 @@ async function getInfo() {
         const comentarios = comment.map((comentario) => {
             return(
               <Comentario usuario={comentario.iduser} desc={comentario.descripcion}
-              imagen={comentario.imagen} fecha={comentario.fecha} id={comentario.id}
+              imagen={comentario.imagen} fecha={comentario.fecha} id={comentario.id} update={getComentarios}
               />
               );
         });
@@ -38,10 +38,9 @@ async function getInfo() {
 
 
 
-
-
 return (
         <>
+        <CajaComentario update={getComentarios} />
           <Container fluid>
               {comment &&
                 getComments()

@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import {useParams} from 'react-router-dom';
-import { makeStyles } from '@material-ui/core/styles';
+
 import Container from '@material-ui/core/Container';
 import Button from 'react-bootstrap/Button';
 import swal from 'sweetalert';
-
+import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -19,32 +19,33 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 export default function CajaComentario(props) {
-    const {id} = useParams();
     const classes = useStyles();
-    const [comentario, setComentario] = useState('')
+    const {id}= useParams();
+    const [comentario, setComentario] = useState('');
     
     
     const handleCommentValue = (event) => {
         setComentario(event.target.value)
     }
     async function handleSubmit(){
-        const country = id;
-        const datos= {
-            country,
-            comentario
-        }
         const url = `http://localhost:8000/comentarios`;
+        const formData = new FormData();
+
+        formData.append('descripcion', comentario);
+        formData.append('id', id);
         
         const response = await fetch(url, {
                         method: 'POST',
-                        body: datos,
+                        body: formData,
                         credentials: 'include',
                         })
         const data = await response.json();
         if(data.status ===200){
-            swal("Error");
-        }else{ 
             swal("TODO BIEN");
+            props.update();
+            setComentario('');
+        }else{ 
+            swal("ERROR");
         }        
     };
 

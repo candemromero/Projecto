@@ -37,7 +37,9 @@ export default function Comentario(props) {
         const response = await fetch(url, { method: 'DELETE', credentials: 'include' });
         const data = await response.json();
         if(data.status === 200) {
-          props.hidden()
+          props.update();
+        }else{
+          console.log('PROBLEMAS al borrar el comentario')
         }
     }
     useEffect (datosUser, [])

@@ -48,13 +48,11 @@ router.post('/', (req, res) => {
   const sql = `INSERT INTO comentarios(iduser, country, descripcion)
              VALUES(?, ?, ?)`;
 
-  const values = [
-    req.session.user.id,
-    req.body.country,
-    req.body.descripcion,
-  ];
+  const id = req.session.user.id;
+  const country = req.body.id;
+  const descripcion = req.body.descripcion;
 
-  connection.query(sql, values, (err, result) => {
+  connection.query(sql, [id, country, descripcion], (err, result) => {
     if (err) {
       console.log(err);
       res.json({
