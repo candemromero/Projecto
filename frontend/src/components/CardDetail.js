@@ -12,8 +12,6 @@ import Col from 'react-bootstrap/Col';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import Rating from '@material-ui/lab/Rating';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -88,12 +86,6 @@ export default function CardDetail() {
                 <Typography gutterBottom variant="h3">
                     {pais.name}
                 </Typography> 
-                    <Box component="fieldset" mb={3} borderColor="transparent">
-                      <Typography component="legend">Rating</Typography>
-                      <Rating name="half-rating-read" defaultValue={2.5} precision={0.5} readOnly />
-                    </Box>
-
-
                   <Typography variant="h6" gutterBottom>
                       Capital:
                   </Typography>

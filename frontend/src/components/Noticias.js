@@ -70,7 +70,7 @@ export default function Noticias(props) {
         <>
         <Row>
         <Typography gutterBottom variant="h4" component="h3">
-            Noticias
+            News
         </Typography>
         </Row>
         <Row className={classes.root}>
