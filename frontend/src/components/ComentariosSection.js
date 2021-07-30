@@ -29,7 +29,7 @@ async function getComentarios() {
         const comentarios = comment.map((comentario) => {
             return(
               <Comentario usuario={comentario.iduser} desc={comentario.descripcion}
-              imagen={comentario.imagen} fecha={comentario.fecha} id={comentario.id} update={getComentarios}
+               fecha={comentario.fecha} id={comentario.id} update={getComentarios}
               />
               );
         });

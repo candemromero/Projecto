@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import {Link} from 'react-router-dom';
+
 
 //BOOTSTRAP COMPONENTS
 import Modal from 'react-bootstrap/Modal';
@@ -57,12 +59,12 @@ export default function ModalLogin(props) {
          
         <Form>
             <Form.Group>
-                <Form.Label>Correo Electrónico</Form.Label>
+                <Form.Label>Email</Form.Label>
                 <Form.Control type="email" value={email} onChange={handleEmail}/>
                 </Form.Group>
 
             <Form.Group>
-                <Form.Label>Constraseña</Form.Label>
+                <Form.Label>Password</Form.Label>
                 <Form.Control type="password" value={password} onChange={handlePassword}/>
             </Form.Group>
 
@@ -71,12 +73,13 @@ export default function ModalLogin(props) {
         </Modal.Body>
 
         <Modal.Footer>
-          <Button variant="link">
-            Olvidé mi password
-          </Button>
+        <Link to="/cuenta" className="nav-link" onClick={props.handleClose}>Sign up </Link>
+          
           <Button variant="primary" onClick={handleAceptar}>
-            Aceptar
+            Accept
           </Button>
+
+
         </Modal.Footer>
 
       </Modal>

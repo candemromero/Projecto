@@ -11,26 +11,25 @@ export default function Favoritos() {
         const url= 'http://localhost:8000/favoritos/';
         const response = await fetch(url, {credentials: 'include'})
         const data = await response.json();
-        setFavorito(data)
+        setFavorito(data);
     }
-    function getFav(){
+    async function getFav(){
          const datos = favorito.map(async function(fav){
             const url= `http://localhost:8000/paises/${fav.idcountry}`
-            const response = await fetch(url);
+            const response = await fetch(url, {credentials: 'include'});
             const data = await response.json();
-            console.log(data)
-            /* return(
+            return(
                 <Col>
                     <Card style={{ width: '18rem' }}>
                     <Card.Img variant="top" src={data[0].bandera} />
                     <Card.Body>
-                        <Button variant="link">{data[0].name}</Button>
+                        <Button variant="link">{data[0].nombre}</Button>
                     </Card.Body>
                     </Card>
                 </Col>
-            )  */
+            ) 
         })
-        return datos;
+        return datos
     }
     return (
        

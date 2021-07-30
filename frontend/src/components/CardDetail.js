@@ -3,7 +3,6 @@ import {useParams} from 'react-router-dom';
 import CDatosIDH from './CDatosIDH';
 import ComentariosSection from './ComentariosSection';
 import Noticias from './Noticias';
-import swal from 'sweetalert';
 
 //BOOTSTRAP
 import Image from 'react-bootstrap/Image';
@@ -15,11 +14,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Rating from '@material-ui/lab/Rating';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
-import Favorite from '@material-ui/icons/Favorite';
-import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
-
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -66,21 +60,6 @@ export default function CardDetail() {
   }
 
 
-  // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< ARREGLAR ESTO >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-    async function handleFav(){
-      const url = 'http://localhost:8000/favoritos/';
-      const formData = new FormData();
-        formData.append('id', id);
-      const response = await fetch(url, {method: 'POST', body: formData, credentials: 'include'});
-      const data = await response.json();
-      if(data.status ===200){
-        swal("TODO BIEN");
-    }else{ 
-        swal("ERROR");
-    }
-  }
-
-
     //INFO CDatosIDH
     async function getData() {
       const url = `http://localhost:8000/paises/data/${id}`
@@ -106,8 +85,6 @@ export default function CardDetail() {
           <Paper className={classes.paper}>
                 <Image className={classes.media} width={250} src={pais.bandera} rounded />
 
-                <FormControlLabel
-                  control={<Checkbox icon={<FavoriteBorder />} checkedIcon={<Favorite />} onChange={handleFav}/> }/>
                 <Typography gutterBottom variant="h3">
                     {pais.name}
                 </Typography> 

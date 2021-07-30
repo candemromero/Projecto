@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     if (err) {
       res.send('Error al obtener los favoritos del usuario');
     } else {
-      res.json(result)
+      res.json(result);
     }
   });
 });

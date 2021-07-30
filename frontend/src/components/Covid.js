@@ -6,7 +6,7 @@ export default function Covid() {
 
     useEffect(getData, [])
     async function getData(){
-        const url = `https://covid19api.azurewebsites.net/v2/country/${id}`
+        const url = ``
         const response = await fetch(url);
         const data = await response.json();
         console.log(data)

@@ -15,8 +15,8 @@ router.get('/', (req, res) => {
   });
 });
 
-router.get('/:id', (req, res) => {
-  const iduser = req.params.id;
+router.get('/user', (req, res) => {
+  const iduser = req.session.user.id;
 
   const sql = 'SELECT * FROM usuarios WHERE id = ?';
 
@@ -40,9 +40,9 @@ router.post('/', (req, res) => {
 
   connection.query(sql, [nombre, apellido, email, password], (err, result) => {
     if (err) {
-      res.send('Error al agregar el usuario');
+      res.send('Error adding user');
     } else {
-      res.send('Se agregó el usuario correctamente');
+      res.status(200).json({message:'User successfully added'});
     }
   });
 });
@@ -63,9 +63,9 @@ router.put('/:id', (req, res) => {
     [nombre, apellido, email, password, id],
     (err, result) => {
       if (err) {
-        res.send('Error al modificar el usuario');
+        res.send('Error modifying user');
       } else {
-        res.send('Usuario modificado');
+        res.json({message:'Changed user'});
       }
     }
   );
@@ -83,7 +83,7 @@ router.delete('/:id', (req, res) => {
       console.log(err);
       res.send('Error al eliminar el usuario');
     } else {
-      res.send('Usuario eliminado');
+      res.send('Deleted user');
     }
   });
 });

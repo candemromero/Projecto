@@ -7,8 +7,6 @@ import Nav from 'react-bootstrap/Nav';
 import NavDropdown from 'react-bootstrap/NavDropdown';
 //MATERIAL IU ELEMENTOS
 import Button from '@material-ui/core/Button';
-import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
 import { makeStyles } from '@material-ui/core/styles';
 
 
@@ -86,24 +84,9 @@ export default function NavegationBar(props) {
           <Link to="/" className="nav-link">Home</Link>
             <Link to="/paises" className="nav-link">Countries</Link>
           </Nav>   
-          
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-          </div>
 
           {props.user ? (
           <NavDropdown alignright="true" title={props.user.name} id="basic-nav-dropdown">
-              <Link to="/favoritos" className="nav-link">Favoritos</Link>
               <Link to="/comentarios" className="nav-link">Comentarios</Link>
               <Link to="/cuenta" className="nav-link">Cuenta</Link>
               <NavDropdown.Divider />
