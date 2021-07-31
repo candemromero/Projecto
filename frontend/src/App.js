@@ -6,7 +6,7 @@ import MyNavbar from "./components/NavigationBar";
 import Header from "./components/Header";
 import CountryList from "./components/CountryList";
 import CardDetail from "./components/CardDetail";
-import Cuenta from "./components/Cuenta";
+import CuentaEditor from "./components/CuentaEditor";
 import MisComentarios from "./components/MisComentarios";
 
 
@@ -49,7 +49,7 @@ function App() {
       <CountryList />
       </Route>
       <Route exact path="/cuenta">
-        <Cuenta />
+        <CuentaEditor user={user} updateUser={updateUser}/>
       </Route>
       <Route exact path="/comentarios">
         <MisComentarios />
